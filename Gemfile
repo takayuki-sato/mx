@@ -29,6 +29,9 @@ gem 'spring',        group: :development
 # frontend
 gem 'angularjs-rails'
 
+# backend
+gem 'rest-client'
+
 # test
 gem "rspec-rails"
 
