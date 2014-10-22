@@ -31,6 +31,10 @@ gem 'angularjs-rails'
 gem 'underscore-rails'
 gem 'lodash-rails'
 gem 'bluebird-rails'
+gem 'angular-ui-bootstrap-rails'
+gem 'twitter-bootstrap-rails'
+gem 'less-rails'
+gem 'therubyracer'
 
 # backend
 gem 'rest-client'

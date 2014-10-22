@@ -36,4 +36,8 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  config.less.paths << "#{Rails.root}/lib/less/protractor/stylesheets"
+  config.less.compress = true
+  config.app_generators.stylesheet_engine :less
 end

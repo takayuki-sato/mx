@@ -7,7 +7,10 @@
     zoom: 8
   }
 
-  $scope.foo = 'xxx'
-
   $scope.cube = Transaction.get()
+
+  $scope.move = ->
+    $scope.map.center.latitude = 19;
+    $scope.map.center.longitude = 99;
+
 ]
