@@ -1,6 +1,7 @@
 @mx = angular.module('mx', [
   'ngRoute',
-  'google-maps'.ns()
+  'google-maps'.ns(),
+  'ui.bootstrap'
 ])
 
 @mx.config(['$routeProvider', ($routeProvider) ->

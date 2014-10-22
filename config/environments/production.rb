@@ -75,4 +75,8 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  config.less.paths << "#{Rails.root}/lib/less/protractor/stylesheets"
+  config.less.compress = true
+  config.app_generators.stylesheet_engine :less
 end
