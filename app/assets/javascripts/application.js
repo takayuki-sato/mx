@@ -17,5 +17,10 @@
 //= require angular-animate
 //= require angular-resource
 //= require angular-route
+//= require underscore
+//= require lodash
+//= require bluebird
+//= require gmaps/google
+//= require_tree ../../../vendor/assets/javascripts/.
 //= require main
 //= require_tree .

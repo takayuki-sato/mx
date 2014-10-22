@@ -28,9 +28,14 @@ gem 'spring',        group: :development
 
 # frontend
 gem 'angularjs-rails'
+gem 'underscore-rails'
+gem 'lodash-rails'
+gem 'bluebird-rails'
 
 # backend
 gem 'rest-client'
+gem "gmaps4rails"
+gem "geocoder"
 
 # test
 gem "rspec-rails"

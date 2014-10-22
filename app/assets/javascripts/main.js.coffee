@@ -1,5 +1,6 @@
 @mx = angular.module('mx', [
-  'ngRoute'
+  'ngRoute',
+  'google-maps'.ns()
 ])
 
 @mx.config(['$routeProvider', ($routeProvider) ->
@@ -12,4 +13,12 @@
       templateUrl: '../templates/home.html',
       controller: 'HomeCtrl'
     })
+])
+
+@mx.config(['GoogleMapApiProvider'.ns(),(GoogleMapApi) ->
+  GoogleMapApi.configure({
+    key: 'AIzaSyAryvACHmDs-nJMzl581vctZypgpHsukio',
+    v:   '3.17',
+    libraries: 'weather,geometry,visualization'
+  })
 ])
