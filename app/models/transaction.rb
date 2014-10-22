@@ -1,11 +1,18 @@
 class Transaction
+  CREDENTIALS = ENV["CREDENTIALS"]
+  SERVICES = ['https://apis.bbvabancomer.com/datathon/info/merchants_categories']
 
   class << self
     def all
       records = []
-      cube = RestClient.get 'http://www.yahoo.co.jp'
+      cube = RestClient.get SERVICES[0], request_params
       records.push({:cube => cube})
-      return records
     end
+
+    private
+      def request_params
+        params = {:authorization => "BASIC #{CREDENTIALS}"
+        }
+      end
   end
 end
