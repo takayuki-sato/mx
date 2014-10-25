@@ -41,6 +41,9 @@ gem 'rest-client'
 gem "gmaps4rails"
 gem "geocoder"
 
+# parse
+gem 'nokogiri'
+
 # test
 gem "rspec-rails"
 
