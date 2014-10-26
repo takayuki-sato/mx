@@ -136,4 +136,36 @@ namespace :db do
       end
     end
   end
+
+  desc 'category'
+  task :category => :environment do
+    response = Transaction.merchants_categories
+    if (response && response['result'] && response['result']['code'] == 200)
+      categories = response['data']['categories']
+    else
+      puts "Failed #{response}"
+    end
+
+    categories.each do |category|
+      cat = Category.find_or_create_by(name: category['code'])
+      cat.description = category['description']
+
+      if category['subcategories']
+        category['subcategories'].each do |subcategory|
+          if !cat.subcategories.exists?(name: subcategory['code'])
+            cat.subcategories.build(name: subcategory['code'], description: subcategory['description'])
+          end
+        end
+      end
+
+      cat.save
+    end
+
+    if !Rails.env.production?
+      Category.all.each do |data|
+        puts data.inspect
+        puts data.subcategories.inspect
+      end
+    end
+  end
 end
