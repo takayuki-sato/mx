@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141022195438) do
+ActiveRecord::Schema.define(version: 20141026152245) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "areas", force: true do |t|
     t.string   "zipcode"
@@ -19,8 +22,20 @@ ActiveRecord::Schema.define(version: 20141022195438) do
     t.string   "town"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "municipality_id"
+    t.boolean  "available",       default: false, null: false
   end
 
-  add_index "areas", ["zipcode"], name: "index_areas_on_zipcode", unique: true
+  add_index "areas", ["municipality_id"], name: "index_areas_on_municipality_id", using: :btree
+  add_index "areas", ["zipcode"], name: "index_areas_on_zipcode", unique: true, using: :btree
+
+  create_table "municipalities", force: true do |t|
+    t.string   "name"
+    t.string   "key"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "municipalities", ["key"], name: "index_municipalities_on_key", unique: true, using: :btree
 
 end
