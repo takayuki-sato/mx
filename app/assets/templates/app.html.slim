@@ -1,0 +1,19 @@
+/ Navigation
+nav.navbar.navbar-fixed-top.navbar-default role="navigation"
+  div.container
+    div.navbar-header
+      a class="navbar-brand" href="#"
+        | Mx
+    form.navbar-form.navbar-left role="search"
+      div.form-group
+        select.form-control ng-model="myCity" ng-options="city.name for city in cities" ng-change="move()"
+      button.btn.btn-primary.btn-sm.view type="submit" ng-click="refresh()" View
+
+/ contents
+div.container-fluid.main
+  div.row
+   div.col-lg-8
+     ui-gmap-google-map[center="map.center" zoom="map.zoom"]
+   div.col-lg-4.text-center
+    h1
+      | This is the application page.
