@@ -1,4 +1,4 @@
-@mx.controller 'AppCtrl', ['$scope', 'Transaction', ($scope, Transaction) ->
+@mx.controller 'AppCtrl', ['$scope', 'Transaction','AreasResources', ($scope, Transaction, AreasResources) ->
   $scope.map = {
     center: {
       latitude: 45,
@@ -13,4 +13,6 @@
     $scope.map.center.latitude = 19;
     $scope.map.center.longitude = 99;
 
+  $scope.areas = AreasResources.query ->
+    console.log $scope.areas
 ]

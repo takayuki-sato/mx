@@ -1,7 +1,7 @@
 class Transaction
   CREDENTIALS = ENV["CREDENTIALS"]
   DOMAIN = 'https://apis.bbvabancomer.com/datathon/'
-  SERVICES = ['merchants_categories']
+  SERVICES = ['info/merchants_categories']
 
   class << self
     def all
@@ -22,27 +22,27 @@ class Transaction
       call make_url('customer_zipcodes', zipcode, date_min, date_max, group_by, "&by=#{by}")
     end
 
-    def age_distribution_by_zipcode (zipcode, date_min = '201311', date_max = '201404', group_by = 'month', by = 'income')
+    def age_distribution_by_zipcode (zipcode, date_min = '201311', date_max = '201404', group_by = 'month')
       call make_url('age_distribution', zipcode, date_min, date_max, group_by)
     end
 
-    def gender_distribution_by_zipcode (zipcode, date_min = '201311', date_max = '201404', group_by = 'month', by = 'income')
+    def gender_distribution_by_zipcode (zipcode, date_min = '201311', date_max = '201404', group_by = 'month')
       call make_url('gender_distribution', zipcode, date_min, date_max, group_by)
     end
 
-    def payment_distribution_by_zipcode (zipcode, date_min = '201311', date_max = '201404', group_by = 'month', by = 'income')
+    def payment_distribution_by_zipcode (zipcode, date_min = '201311', date_max = '201404', group_by = 'month')
       call make_url('payment_distribution', zipcode, date_min, date_max, group_by)
     end
 
-    def category_distribution_by_zipcode (zipcode, date_min = '201311', date_max = '201404', group_by = 'month', by = 'income')
+    def category_distribution_by_zipcode (zipcode, date_min = '201311', date_max = '201404', group_by = 'month')
       call make_url('category_distribution', zipcode, date_min, date_max, group_by)
     end
 
-    def consumption_pattern_by_zipcode (zipcode, date_min = '201311', date_max = '201404', group_by = 'month', by = 'income')
+    def consumption_pattern_by_zipcode (zipcode, date_min = '201311', date_max = '201404', group_by = 'month')
       call make_url('consumption_pattern', zipcode, date_min, date_max, group_by)
     end
 
-    def cards_cube_by_zipcode (zipcode, date_min = '201311', date_max = '201404', group_by = 'month', by = 'income')
+    def cards_cube_by_zipcode (zipcode, date_min = '201311', date_max = '201404', group_by = 'month')
       call make_url('cards_cube', zipcode, date_min, date_max, group_by)
     end
 

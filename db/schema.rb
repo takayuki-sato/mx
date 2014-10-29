@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141027195253) do
+ActiveRecord::Schema.define(version: 20141029111227) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,30 +31,30 @@ ActiveRecord::Schema.define(version: 20141027195253) do
 
   create_table "calculations", force: true do |t|
     t.integer  "area_id"
-    t.integer  "basic"
-    t.integer  "advanced"
-    t.integer  "professional"
-    t.integer  "other_category"
-    t.integer  "engel"
-    t.integer  "male"
-    t.integer  "femail"
-    t.integer  "enterprise"
-    t.integer  "unknown"
-    t.integer  "consumer"
-    t.integer  "age_0"
-    t.integer  "age_1"
-    t.integer  "age_2"
-    t.integer  "age_3"
-    t.integer  "age_4"
-    t.integer  "age_5"
-    t.integer  "age_6"
-    t.integer  "age_u"
-    t.integer  "young"
+    t.integer  "basic",          default: 0
+    t.integer  "advanced",       default: 0
+    t.integer  "professional",   default: 0
+    t.integer  "other_category", default: 0
+    t.float    "engel",          default: 0.0
+    t.integer  "male",           default: 0
+    t.integer  "enterprise",     default: 0
+    t.integer  "unknown",        default: 0
+    t.float    "consumer",       default: 0.0
+    t.integer  "age_0",          default: 0
+    t.integer  "age_1",          default: 0
+    t.integer  "age_2",          default: 0
+    t.integer  "age_3",          default: 0
+    t.integer  "age_4",          default: 0
+    t.integer  "age_5",          default: 0
+    t.integer  "age_6",          default: 0
+    t.integer  "age_u",          default: 0
+    t.float    "young",          default: 0.0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "female",         default: 0
   end
 
-  add_index "calculations", ["area_id"], name: "index_calculations_on_area_id", using: :btree
+  add_index "calculations", ["area_id"], name: "index_calculations_on_area_id", unique: true, using: :btree
 
   create_table "categories", force: true do |t|
     t.string   "name"
