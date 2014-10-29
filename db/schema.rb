@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141026200350) do
+ActiveRecord::Schema.define(version: 20141027195253) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,33 @@ ActiveRecord::Schema.define(version: 20141026200350) do
 
   add_index "areas", ["municipality_id"], name: "index_areas_on_municipality_id", using: :btree
   add_index "areas", ["zipcode"], name: "index_areas_on_zipcode", unique: true, using: :btree
+
+  create_table "calculations", force: true do |t|
+    t.integer  "area_id"
+    t.integer  "basic"
+    t.integer  "advanced"
+    t.integer  "professional"
+    t.integer  "other_category"
+    t.integer  "engel"
+    t.integer  "male"
+    t.integer  "femail"
+    t.integer  "enterprise"
+    t.integer  "unknown"
+    t.integer  "consumer"
+    t.integer  "age_0"
+    t.integer  "age_1"
+    t.integer  "age_2"
+    t.integer  "age_3"
+    t.integer  "age_4"
+    t.integer  "age_5"
+    t.integer  "age_6"
+    t.integer  "age_u"
+    t.integer  "young"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "calculations", ["area_id"], name: "index_calculations_on_area_id", using: :btree
 
   create_table "categories", force: true do |t|
     t.string   "name"
