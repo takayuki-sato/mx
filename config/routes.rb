@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  resources :transactions
+  resources :transactions, :only => [:index, :show]
+  resources :areas, :only => [:index, :show]
 
   root 'static_pages#index'
 
