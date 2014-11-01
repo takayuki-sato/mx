@@ -18,6 +18,7 @@
 //= require angular-animate
 //= require angular-resource
 //= require angular-route
+//= require angular-rails-templates
 //= require angular-ui-bootstrap
 //= require angular-ui-bootstrap-tpls
 //= require underscore
@@ -27,3 +28,4 @@
 //= require_tree ../../../vendor/assets/javascripts/.
 //= require main
 //= require_tree .
+//= require_tree ../templates

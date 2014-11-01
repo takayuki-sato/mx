@@ -2,17 +2,18 @@
   'ngRoute',
   'google-maps'.ns(),
   'ui.bootstrap',
-  'ngResource'
+  'ngResource',
+  'templates'
 ])
 
 @mx.config(['$routeProvider', ($routeProvider) ->
   $routeProvider.
     when('/app', {
-      templateUrl: '../templates/app.html',
+      templateUrl: 'app.html',
       controller: 'AppCtrl'
     }).
     otherwise({
-      templateUrl: '../templates/home.html',
+      templateUrl: 'home.html',
       controller: 'HomeCtrl'
     })
 ])

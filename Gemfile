@@ -35,6 +35,8 @@ gem 'angular-ui-bootstrap-rails'
 gem 'twitter-bootstrap-rails'
 gem 'less-rails'
 gem 'therubyracer'
+gem 'slim-rails'
+gem 'angular-rails-templates'
 
 # backend
 gem 'rest-client'
