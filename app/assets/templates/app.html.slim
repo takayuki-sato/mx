@@ -14,6 +14,39 @@ div.container-fluid.main
   div.row
    div.col-lg-8
      ui-gmap-google-map[center="map.center" zoom="map.zoom"]
+       ui-gmap-layer namespace="heat" type="HeatmapLayer" options="{data: initial_data()}"
+
    div.col-lg-4.text-center
-    h1
-      | This is the application page.
+    h2
+      | What is your preference?
+    table.table.table-condensed.preference-table
+      tr
+        th Affordability
+        td
+          .form-group
+            div.btn-group
+              button.btn.btn-default type="button" id="value" ng-click="setAffordability('value')"
+                i.fa.fa-usd
+                br
+                span.preference-button
+                  | Value For Money
+              button.btn.btn-default type="button" id="quality" ng-click="setAffordability('quality')"
+                i.fa.fa-thumbs-o-up
+                br
+                span.preference-button
+                  | Good Quality
+      tr
+        th Age
+        td
+          .form-group
+            div.btn-group
+              button.btn.btn-default type="button" id="young" ng-click="setAge('young')"
+                i.fa.fa-smile-o
+                br
+                span.preference-button
+                  | Young & Active
+              button.btn.btn-default type="button" id="matured" ng-click="setAge('matured')"
+                i.fa.fa-heart
+                br
+                span.preference-button
+                  | Matured & Family

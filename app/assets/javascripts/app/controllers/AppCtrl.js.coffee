@@ -1,5 +1,5 @@
-@mx.controller 'AppCtrl', ['$rootScope', '$scope', 'Transaction','AreasResources', 'Geocoder',
-  ($rootScope, $scope, Transaction, AreasResources, Geocoder) ->
+@mx.controller 'AppCtrl', ['$rootScope', '$scope', 'Transaction', 'Calculation', 'AreasResources', 'Geocoder',
+  ($rootScope, $scope, Transaction, Calculation, AreasResources, Geocoder) ->
     $rootScope.map = {
       center: {
         latitude: 19.4326077,
@@ -28,5 +28,30 @@
     $scope.refresh = ->
       # ToDo move the Geocoder service to Directive
       $rootScope.map
+
+    $scope.initial_data = ->
+      return new google.maps.MVCArray([new google.maps.LatLng(19.4326077, -99.13320799999997)])
+
+    $scope.setAffordability = (id) ->
+      switch id
+        when "value"
+          Calculation.value()
+          another_id = "quality"
+        when "quality"
+          Calculation.quality()
+          another_id = "value"
+
+      return true
+
+    $scope.setAge = (id) ->
+      switch id
+        when "young"
+          Calculation.young()
+          another_id = "matured"
+        when "matured"
+          Calculation.matured()
+          another_id = "young"
+
+      return true
 
 ]

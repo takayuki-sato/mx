@@ -3,7 +3,8 @@
   'google-maps'.ns(),
   'ui.bootstrap',
   'ngResource',
-  'templates'
+  'templates',
+  'ngMap'
 ])
 
 @mx.config(['$routeProvider', ($routeProvider) ->
@@ -22,6 +23,6 @@
   GoogleMapApi.configure({
     key: 'AIzaSyAryvACHmDs-nJMzl581vctZypgpHsukio',
     v:   '3.17',
-    libraries: 'weather,geometry,visualization'
+    libraries: 'weather,geometry,visualization,drawing,places'
   })
 ])
