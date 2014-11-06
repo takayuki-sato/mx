@@ -120,7 +120,8 @@ namespace :db do
 
   desc 'basic analysis'
   task :basic => :environment do
-    areas = Area.where(available: true, city: 'Monterrey')
+    areas = Area.where(available: true)
+    areas.where(city: 'Monterrey') unless Rails.env.production?
 
     areas.each do |area|
       calculation = area.calculation || area.create_calculation
@@ -129,6 +130,27 @@ namespace :db do
       update_availability area, calculation
 
       calculation.save
+    end
+
+    if !Rails.env.production?
+      Calculation.all.each do |data|
+        puts data.inspect
+      end
+    end
+  end
+
+  desc 'geocode'
+  task :geocode => :environment do
+    areas = Area.where(available: true)
+    areas.where(city: 'Monterrey') unless Rails.env.production?
+
+    areas.each do |area|
+      puts "- working at #{area.town}, #{area.city}"
+
+      area.geocode
+      area.available = false if area.calculation && area.calculation.formatted_address.blank?
+      area.calculation.save if area.calculation
+      area.save
     end
 
     if !Rails.env.production?
