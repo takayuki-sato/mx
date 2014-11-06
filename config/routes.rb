@@ -1,6 +1,14 @@
 Rails.application.routes.draw do
   resources :transactions, :only => [:index, :show]
   resources :areas, :only => [:index, :show]
+  resources :calculations do
+    collection do
+      get 'value'
+      get 'quality'
+      get 'young'
+      get 'matured'
+    end
+  end
 
   root 'static_pages#index'
 

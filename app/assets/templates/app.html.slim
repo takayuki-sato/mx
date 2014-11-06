@@ -6,14 +6,47 @@ nav.navbar.navbar-fixed-top.navbar-default role="navigation"
         | Mx
     form.navbar-form.navbar-left role="search"
       div.form-group
-        select.form-control ng-model="myCity" ng-options="city.name for city in cities" ng-change="move()"
-      button.btn.btn-primary.btn-sm.view type="submit" ng-click="refresh()" View
+        select.form-control ng-model="myCity" ng-options="city.name for city in cities"
+      button.btn.btn-primary.btn-sm.view type="submit" ng-click="move()" View
 
 / contents
 div.container-fluid.main
   div.row
    div.col-lg-8
-     ui-gmap-google-map[center="map.center" zoom="map.zoom"]
+     map id="mx-map"
+
    div.col-lg-4.text-center
-    h1
-      | This is the application page.
+    h2
+      | What is your preference?
+    table.table.table-condensed.preference-table
+      tr
+        th Affordability
+        td
+          .form-group
+            div.btn-group
+              button.btn.btn-default type="button" id="value" ng-click="setAffordability('value')"
+                i.fa.fa-usd
+                br
+                span.preference-button
+                  | Value For Money
+              button.btn.btn-default type="button" id="quality" ng-click="setAffordability('quality')"
+                i.fa.fa-thumbs-o-up
+                br
+                span.preference-button
+                  | Good Quality
+      tr
+        th Age
+        td
+          .form-group
+            div.btn-group
+              button.btn.btn-default type="button" id="young" ng-click="setAge('young')"
+                i.fa.fa-smile-o
+                br
+                span.preference-button
+                  | Young & Active
+              button.btn.btn-default type="button" id="matured" ng-click="setAge('matured')"
+                i.fa.fa-heart
+                br
+                span.preference-button
+                  | Matured & Family
+
