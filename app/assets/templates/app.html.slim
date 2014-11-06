@@ -6,15 +6,14 @@ nav.navbar.navbar-fixed-top.navbar-default role="navigation"
         | Mx
     form.navbar-form.navbar-left role="search"
       div.form-group
-        select.form-control ng-model="myCity" ng-options="city.name for city in cities" ng-change="move()"
-      button.btn.btn-primary.btn-sm.view type="submit" ng-click="refresh()" View
+        select.form-control ng-model="myCity" ng-options="city.name for city in cities"
+      button.btn.btn-primary.btn-sm.view type="submit" ng-click="move()" View
 
 / contents
 div.container-fluid.main
   div.row
    div.col-lg-8
-     ui-gmap-google-map[center="map.center" zoom="map.zoom"]
-       ui-gmap-layer namespace="heat" type="HeatmapLayer" options="{data: initial_data()}"
+     map id="mx-map"
 
    div.col-lg-4.text-center
     h2
@@ -50,3 +49,4 @@ div.container-fluid.main
                 br
                 span.preference-button
                   | Matured & Family
+
