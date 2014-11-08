@@ -10,43 +10,45 @@ nav.navbar.navbar-fixed-top.navbar-default role="navigation"
       button.btn.btn-primary.btn-sm.view type="submit" ng-click="move()" View
 
 / contents
-div.container-fluid.main
-  div.row
-   div.col-lg-8
-     map id="mx-map"
+.container-fluid.main
+  .row
+    .col-lg-8.map-area
+      map.custom-map id="mx-map"
+       //heatmap-layer id="heat" data="heatData"
+       //map-data load-geo-json="getHeatData()"
+        //marker position="19.4326077, -99.13320799999997" title="test"
 
-   div.col-lg-4.text-center
-    h2
-      | What is your preference?
-    table.table.table-condensed.preference-table
-      tr
-        th Affordability
-        td
-          .form-group
-            div.btn-group
-              button.btn.btn-default type="button" id="value" ng-click="setAffordability('value')"
-                i.fa.fa-usd
-                br
-                span.preference-button
-                  | Value For Money
-              button.btn.btn-default type="button" id="quality" ng-click="setAffordability('quality')"
-                i.fa.fa-thumbs-o-up
-                br
-                span.preference-button
-                  | Good Quality
-      tr
-        th Age
-        td
-          .form-group
-            div.btn-group
-              button.btn.btn-default type="button" id="young" ng-click="setAge('young')"
-                i.fa.fa-smile-o
-                br
-                span.preference-button
-                  | Young & Active
-              button.btn.btn-default type="button" id="matured" ng-click="setAge('matured')"
-                i.fa.fa-heart
-                br
-                span.preference-button
-                  | Matured & Family
-
+    .col-lg-4.text-center
+      h2
+        | What is your preference?
+      table.table.table-condensed.preference-table
+        tr
+          th Affordability
+          td
+            .form-group
+              div.btn-group
+                button.btn.btn-default type="button" id="value" ng-click="setAffordability('value')"
+                  i.fa.fa-usd
+                  br
+                  span.preference-button
+                    | Value For Money
+                button.btn.btn-default type="button" id="quality" ng-click="setAffordability('quality')"
+                  i.fa.fa-thumbs-o-up
+                  br
+                  span.preference-button
+                    | Good Quality
+        tr
+          th Age
+          td
+            .form-group
+              div.btn-group
+                button.btn.btn-default type="button" id="young" ng-click="setAge('young')"
+                  i.fa.fa-smile-o
+                  br
+                  span.preference-button
+                    | Young & Active
+                button.btn.btn-default type="button" id="matured" ng-click="setAge('matured')"
+                  i.fa.fa-heart
+                  br
+                  span.preference-button
+                    | Matured & Family

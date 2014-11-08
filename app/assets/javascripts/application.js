@@ -24,8 +24,8 @@
 //= require underscore
 //= require lodash
 //= require bluebird
-//= require gmaps/google
 //= require_tree ../../../vendor/assets/javascripts/.
+//= require gmaps/google
 //= require main
 //= require_tree .
 //= require_tree ../templates
