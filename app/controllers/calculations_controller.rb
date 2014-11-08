@@ -5,22 +5,22 @@ class CalculationsController < ApplicationController
   AGE_MATURED = 0.6
 
   def value
-    @calculations = Calculation.where(engel < ENGEL_VALUE, engel > 0 )
+    @calculations = Calculation.where("engel < ?", ENGEL_VALUE).where("engel > 0")
     render :json => @calculations
   end
 
   def quality
-    @calculations = Calculation.where(engel > ENGEL_QUALITY)
+    @calculations = Calculation.where("engel > ?", ENGEL_QUALITY)
     render :json => @calculations
   end
 
   def young
-    @calculations = Calculation.where(engel < AGE_YOUNG, engel > 0 )
+    @calculations = Calculation.where("engel < ?", AGE_YOUNG).where("engel > 0")
     render :json => @calculations
   end
 
   def matured
-    @calculations = Calculation.where(engel > AGE_MATURED)
+    @calculations = Calculation.where("engel > ?", AGE_MATURED)
     render :json => @calculations
   end
 end
