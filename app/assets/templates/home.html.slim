@@ -1,7 +1,179 @@
-h1
-  | This is the home page.
-p
-  | Value of "foo": {{foo}}
-p
-button.btn.btn-primary[type="button" onclick="javascript:location.href='#/app';"]
-  | View app
+/ Navigation
+header
+  nav.navbar.navbar-fixed-top.navbar-default.home-header role="navigation"
+    .container
+      .navbar-header
+        a class="navbar-brand" href="#"
+          | Mx
+/ summary
+section.summary-section
+  .summary
+    h1.text-uppercase.text-center
+      | Smart navigator for expats
+    form.form-inline.text-center.start-form role="form"
+        .form-group
+          select.form-control ng-model="myCity" ng-options="city.name for city in cities"
+          button.btn.btn-success type="button" onclick="javascript:location.href='#/app';" Get Started
+  .overlay
+    #slides
+      ul.slides-container
+        li: img src="/home/skydivers.png" alt="skydivers" id="slide0"
+        li: img src="/home/father.png" alt="guide" id="slide1"
+        li: img src="/home/team.png" alt="team" id="slide2"
+        li: img src="/home/mexico.png" alt="city" id="slide3"
+  .overlay-arrow.text-center ng-click="goToProblem()"
+    p
+      | Learn more
+    div
+      span.fa.fa-chevron-down
+
+section.problem-section id="section2"
+  .container-fluid.problem-container
+    .row
+      .col-sm-6.text-center
+        img.img-responsive.problem-img.center-block src="/home/stamp.png" alt="panic"
+      .col-sm-6.text-center
+          .panel.panel-warning.problem-desc.center-block
+            .panel-heading
+              h2.panel-title
+                | Moving abroad is a nightmare
+            .panel-body
+              p
+                | What if you move to Monterrey, Mexico?
+              p
+                | You might need work permit, a place to live, insurance, transportation, school for your kids, and many more.
+              p
+                | To make these decisions, you must consider your budget, lifestyle, neighborhood security and so on.
+              p
+                | International relocation is never easy if you do not have a local guide.
+
+section.solution-section
+  .solution-img
+    img.solution-bg src="/home/notebook.png"
+  .container-fluid.solution-container
+    .row
+      .col-sm-6.text-center
+        .panel.panel-info.solution-desc.center-block
+          .panel-heading
+            h2.panel-title
+              | Meet your local guide by one click
+          .panel-body
+            p
+              | We, Vamos A México, show you a whole picture of your international relocation by one click.
+            p
+              | First, pick your preference. Are you a young party lover? Or do you prefer a calm environment for your family?
+            p
+              | Second, that's it.
+            p
+              | Then, you will see your best area to live, some agents you should contact with, and so on.
+            p
+              | A hassle for international relocation is over.
+
+section.data-section
+  .container-fluid.data-container
+    .row
+      .col-sm-6.text-center
+        .thumbnail
+          a href="https://developers.bbva.com/web/bbva-open-platform/innova-challenge-2014-mx"
+            img.img-responsive.data-img.center-block src="/home/innova-landing-englis_2.png" alt="BBVA"
+          .caption
+            p
+              a href="https://developers.bbva.com/web/bbva-open-platform/innova-challenge-2014-mx"
+                | BBVA Innova Challenge 2014 MX
+      .col-sm-6.text-center
+        .panel.panel-primary.data-desc.center-block
+          .panel-heading
+            h2.panel-title
+              | Excellence by "Big data"
+          .panel-body
+            p
+              | So, how does it work?
+            p
+              |
+                Our recommendation engine calculates some economic indicators from serveral data sources.
+                The major one is provided by BBVA, one of the largest bank in the world.
+            p
+              |
+                For example, we predict which are is rich or poor using the transaction histories in each area
+                by analyzing Engel coefficient, the proportion of expenditure spent on food.
+            p
+              |
+                Engel coefficient is a well-known economic indicator based on statistics that
+                consumers increase their expenditures on food products less than their increases in income.
+                A low Engel coefficient implies a higher standard of living in a specified area.
+
+section.market-section
+  .container-fluid.market-container
+    .row
+      .col-sm-6.text-center
+        .panel.panel-default.market-desc.center-block
+          .panel-heading
+            h2.panel-title
+              | 200+ Million expats on earth
+          .panel-body
+            p
+              | Some say, "the world is flat."
+            p
+              |
+                Actually people come across the borders more than ever before.
+                It was expected more than 200 million people lived abroad in 2010.
+                In developed countries, expatriates and migrants accounted for almost 10% of the total population.
+                This number can be more when professionals on a business trip or international students are included.
+            p
+              |
+                However, we think "the world is not that flat."
+                Local information is crucial for most of the expatriates and migrants to relocate smoothly.
+            p
+              |
+                We, Vamos A México, offers a universal solution for a global problem.
+          .panel-footer
+            p
+              a href="http://www.justlanded.com/english/Common/Footer/Expatriates/How-many-expats-are-there"
+                | Source: Just landed
+      .col-sm-6.text-center
+          .thumbnail
+            a href="http://www.justlanded.com/english/Common/Footer/Expatriates/How-many-expats-are-there"
+              img.img-responsive.data-img.center-block src="http://storage.justlanded.com/var/storage/images/media/images/expatriates-worldwide/4942023-1-eng-GB/Expatriates-worldwide.png" alt="expats"
+            .caption
+              p
+                a href="http://www.justlanded.com/english/Common/Footer/Expatriates/How-many-expats-are-there"
+                  | Just Landed
+
+section.team-section
+  .container-fluid.team-container
+    .row
+      .col-sm-6.text-center
+        thumbnail
+          img.img-responsive.img-circle.data-img.center-block src="/home/taka.png" alt="Takayuki Sato"
+          .caption
+            h2 Takayuki Sato
+      .col-sm-6.text-center
+        .panel.panel-info.team-desc.center-block
+          .panel-heading
+            h2.panel-title
+              | Founder's profile
+          .panel-body
+            ul
+              li World traveller. Visited/Lived in Mexico, Spain, and 10+ countries
+              li Multiple winner in business/technology competitions such as Startup Weekend Boston
+              li IBM alumnus. Business Intelligence champion in Tokyo
+              li MBA graduate at ESADE Business School, Barcelona, Spain
+              li CTO at MyImpact Education in Berlin
+            p
+              a href="https://www.linkedin.com/in/takayukisato"
+                span.fa.fa-linkedin-square
+
+section.final-section
+  .final
+    h2.text-center
+      | Going global, knowing local
+    form.form-inline.text-center.start-form role="form"
+      .form-group
+        select.form-control ng-model="myCity" ng-options="city.name for city in cities"
+        button.btn.btn-success type="button" onclick="javascript:location.href='#/app';" Get Started
+
+footer
+  nav.navbar.navbar-default role="navigation"
+    .container
+      p.navbar-text
+        | &copy; Vamos A México
