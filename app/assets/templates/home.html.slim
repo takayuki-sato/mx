@@ -1,19 +1,14 @@
-/ Navigation
-header
-  nav.navbar.navbar-fixed-top.navbar-default.home-header role="navigation"
-    .container
-      .navbar-header
-        a class="navbar-brand" href="#"
-          | Mx
+ng-include src="'partials/header.html'"
+
 / summary
 section.summary-section
   .summary
     h1.text-uppercase.text-center
-      | Smart navigator for expats
+      | Smart relocation navigator for expats
     form.form-inline.text-center.start-form role="form"
         .form-group
-          select.form-control ng-model="myCity" ng-options="city.name for city in cities"
-          button.btn.btn-success type="button" onclick="javascript:location.href='#/app';" Get Started
+          select.form-control.city-select ng-model="myCity" ng-options="city.name for city in cities" ng-change="pickMyCity()"
+          button.btn.btn-success type="button" ng-href="#/app" ng-click="start()" Get Started
   .overlay
     #slides
       ul.slides-container
@@ -28,12 +23,12 @@ section.summary-section
       span.fa.fa-chevron-down
 
 section.problem-section id="section2"
-  .container-fluid.problem-container
+  .container-fluid.section-container
     .row
       .col-sm-6.text-center
-        img.img-responsive.problem-img.center-block src="/home/stamp.png" alt="panic"
+        img.img-responsive.section-img.center-block src="/home/stamp.png" alt="panic"
       .col-sm-6.text-center
-          .panel.panel-warning.problem-desc.center-block
+          .panel.panel-warning.section-desc.center-block
             .panel-heading
               h2.panel-title
                 | Moving abroad is a nightmare
@@ -50,10 +45,10 @@ section.problem-section id="section2"
 section.solution-section
   .solution-img
     img.solution-bg src="/home/notebook.png"
-  .container-fluid.solution-container
+  .container-fluid.section-container
     .row
       .col-sm-6.text-center
-        .panel.panel-info.solution-desc.center-block
+        .panel.panel-info.section-desc.center-block
           .panel-heading
             h2.panel-title
               | Meet your local guide by one click
@@ -70,18 +65,18 @@ section.solution-section
               | A hassle for international relocation is over.
 
 section.data-section
-  .container-fluid.data-container
+  .container-fluid.section-container
     .row
       .col-sm-6.text-center
-        .thumbnail
-          a href="https://developers.bbva.com/web/bbva-open-platform/innova-challenge-2014-mx"
-            img.img-responsive.data-img.center-block src="/home/innova-landing-englis_2.png" alt="BBVA"
+        .thumbnail.data-thumbnail
+          a href="https://developers.bbva.com/web/bbva-open-platform/innova-challenge-2014-mx" target="_blank"
+            img.img-responsive.section-img.center-block src="/home/innova-landing-englis_2.png" alt="BBVA"
           .caption
             p
-              a href="https://developers.bbva.com/web/bbva-open-platform/innova-challenge-2014-mx"
+              a href="https://developers.bbva.com/web/bbva-open-platform/innova-challenge-2014-mx" target="_blank"
                 | BBVA Innova Challenge 2014 MX
       .col-sm-6.text-center
-        .panel.panel-primary.data-desc.center-block
+        .panel.panel-primary.section-desc.center-block
           .panel-heading
             h2.panel-title
               | Excellence by "Big data"
@@ -90,77 +85,64 @@ section.data-section
               | So, how does it work?
             p
               |
-                Our recommendation engine calculates some economic indicators from serveral data sources.
+                Our recommendation engine calculates some economic indicators, e.g. Engel coefficient, from serveral data sources.
                 The major one is provided by BBVA, one of the largest bank in the world.
-            p
-              |
-                For example, we predict which are is rich or poor using the transaction histories in each area
-                by analyzing Engel coefficient, the proportion of expenditure spent on food.
-            p
-              |
-                Engel coefficient is a well-known economic indicator based on statistics that
-                consumers increase their expenditures on food products less than their increases in income.
-                A low Engel coefficient implies a higher standard of living in a specified area.
 
 section.market-section
-  .container-fluid.market-container
+  .container-fluid.section-container
     .row
       .col-sm-6.text-center
-        .panel.panel-default.market-desc.center-block
+        .panel.panel-default.section-desc.center-block
           .panel-heading
             h2.panel-title
               | 200+ Million expats on earth
           .panel-body
             p
-              | Some say, "the world is flat."
-            p
               |
+                Some say, "the world is flat."
                 Actually people come across the borders more than ever before.
-                It was expected more than 200 million people lived abroad in 2010.
-                In developed countries, expatriates and migrants accounted for almost 10% of the total population.
-                This number can be more when professionals on a business trip or international students are included.
             p
               |
                 However, we think "the world is not that flat."
-                Local information is crucial for most of the expatriates and migrants to relocate smoothly.
+                Local information is crucial for most of the expatriates to relocate smoothly.
             p
               |
                 We, Vamos A México, offers a universal solution for a global problem.
           .panel-footer
             p
-              a href="http://www.justlanded.com/english/Common/Footer/Expatriates/How-many-expats-are-there"
+              a href="http://www.justlanded.com/english/Common/Footer/Expatriates/How-many-expats-are-there" target="_blank"
                 | Source: Just landed
       .col-sm-6.text-center
           .thumbnail
-            a href="http://www.justlanded.com/english/Common/Footer/Expatriates/How-many-expats-are-there"
-              img.img-responsive.data-img.center-block src="http://storage.justlanded.com/var/storage/images/media/images/expatriates-worldwide/4942023-1-eng-GB/Expatriates-worldwide.png" alt="expats"
+            a href="http://www.justlanded.com/english/Common/Footer/Expatriates/How-many-expats-are-there" target="_blank"
+              img.img-responsive.section-img.center-block src="http://storage.justlanded.com/var/storage/images/media/images/expatriates-worldwide/4942023-1-eng-GB/Expatriates-worldwide.png" alt="expats"
             .caption
               p
-                a href="http://www.justlanded.com/english/Common/Footer/Expatriates/How-many-expats-are-there"
+                a href="http://www.justlanded.com/english/Common/Footer/Expatriates/How-many-expats-are-there" target="_blank"
                   | Just Landed
 
 section.team-section
-  .container-fluid.team-container
+  .container-fluid.section-container
     .row
       .col-sm-6.text-center
-        thumbnail
-          img.img-responsive.img-circle.data-img.center-block src="/home/taka.png" alt="Takayuki Sato"
+        div
+          img.img-responsive.img-circle.section-img.team-img.center-block src="/home/taka.png" alt="Takayuki Sato"
           .caption
             h2 Takayuki Sato
       .col-sm-6.text-center
-        .panel.panel-info.team-desc.center-block
+        .panel.panel-info.section-desc.center-block
           .panel-heading
             h2.panel-title
               | Founder's profile
           .panel-body
             ul
               li World traveller. Visited/Lived in Mexico, Spain, and 10+ countries
-              li Multiple winner in business/technology competitions such as Startup Weekend Boston
-              li IBM alumnus. Business Intelligence champion in Tokyo
+              li IBM alumnus. Business Analytics champion in Tokyo
               li MBA graduate at ESADE Business School, Barcelona, Spain
+              li Multiple winner in business/technology competitions such as Startup Weekend Boston
               li CTO at MyImpact Education in Berlin
             p
-              a href="https://www.linkedin.com/in/takayukisato"
+              a href="https://www.linkedin.com/in/takayukisato" target="_blank"
                 span.fa.fa-linkedin-square
 
 section.final-section
@@ -169,11 +151,7 @@ section.final-section
       | Going global, knowing local
     form.form-inline.text-center.start-form role="form"
       .form-group
-        select.form-control ng-model="myCity" ng-options="city.name for city in cities"
-        button.btn.btn-success type="button" onclick="javascript:location.href='#/app';" Get Started
+        select.form-control.city-select ng-model="myCity" ng-options="city.name for city in cities" ng-change="pickMyCity()"
+        button.btn.btn-success type="button" ng-click="start()" Get Started
 
-footer
-  nav.navbar.navbar-default role="navigation"
-    .container
-      p.navbar-text
-        | &copy; Vamos A México
+ng-include src="'partials/footer.html'"

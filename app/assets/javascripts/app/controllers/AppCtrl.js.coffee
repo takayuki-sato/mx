@@ -1,12 +1,10 @@
-@mx.controller 'AppCtrl', ['$scope', 'Calculation',
-  ($scope, Calculation) ->
-    $scope.cities = [
-      {name: 'México, D.F.', latLng: new google.maps.LatLng(19.4326077, -99.13320799999997), zoom: 11},
-      {name: 'Monterrey', latLng: new google.maps.LatLng(25.6866142, -100.3161126), zoom: 12},
-      {name: 'Guadalajara', latLng: new google.maps.LatLng(20.6596988, -103.34960920000003), zoom: 12},
-    ]
-    cityDict = _.indexBy($scope.cities, 'name');
-    $scope.myCity = $scope.cities[0]
+@mx.controller 'AppCtrl', ['$scope', '$location', 'Calculation', 'Cities',
+  ($scope, $location, Calculation, Cities) ->
+    $scope.myCity = Cities.getMyCity()
+    $scope.cities = Cities.getCities()
+
+    $scope.pickMyCity = ->
+      Cities.setMyCity($scope.myCity)
 
     $scope.heatData = [
       new google.maps.LatLng(19.4326077, -99.13320799999997),
@@ -24,8 +22,8 @@
       #$scope.heatMap = map.heatmapLayers.heat
 
     $scope.move = ->
-      $scope.map.setCenter cityDict[$scope.myCity.name].latLng
-      $scope.map.setZoom cityDict[$scope.myCity.name].zoom
+      $scope.map.setCenter Cities.getMyCity().latLng
+      $scope.map.setZoom Cities.getMyCity().zoom
 
     $scope.setAffordability = (id) ->
       switch id
@@ -52,4 +50,5 @@
       console.log data
       return true
 
+    $scope.path = $location.path()
 ]
