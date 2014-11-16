@@ -4,8 +4,8 @@
 
 // general
 .home-header {
- background-color: transparent;
- border: none;
+  background-color: rgba(0, 0, 0, 0.8);
+  border: none;
 }
 
 section {
@@ -32,7 +32,7 @@ section {
 
 // summary
 .summary-section {
-  height: 90vh;
+  height: 100vh;
 
   .summary {
     position: absolute;

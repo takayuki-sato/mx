@@ -15,7 +15,7 @@
     cityDict[name]
 
   setMyCity = (obj) ->
-    myCity = getCity(obj.name)
+    myCity = obj
 
   getMyCity = ->
     myCity

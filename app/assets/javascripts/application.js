@@ -27,6 +27,7 @@
 //= require superslides
 //= require_tree ../../../vendor/assets/javascripts/.
 //= require gmaps/google
+//= require ng-map.min
 //= require main
 //= require_tree .
 //= require_tree ../templates

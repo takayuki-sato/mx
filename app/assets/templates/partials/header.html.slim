@@ -6,5 +6,5 @@ header
           | Mx
       form.navbar-form.navbar-left role="search" ng-show="path == '/app'"
         div.form-group
-          select.form-control ng-model="myCity" ng-options="city.name for city in cities" ng-change="pickMyCity()"
-        button.btn.btn-primary.btn-sm.view type="submit" ng-click="move()" View
+          select.form-control ng-model="myCity" ng-options="city.name for city in cities" ng-change="pickMyCity(myCity)"
+        button.btn.btn-success.btn-sm.view type="submit" ng-click="move()" View

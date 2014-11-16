@@ -1,54 +1,59 @@
-@mx.controller 'AppCtrl', ['$scope', '$location', 'Calculation', 'Cities',
-  ($scope, $location, Calculation, Cities) ->
+@mx.controller 'AppCtrl', ['$scope', '$location', '$timeout', 'Calculation', 'Cities',
+  ($scope, $location, $timeout, Calculation, Cities) ->
     $scope.myCity = Cities.getMyCity()
     $scope.cities = Cities.getCities()
 
-    $scope.pickMyCity = ->
-      Cities.setMyCity($scope.myCity)
+    $scope.pickMyCity = (city) ->
+      Cities.setMyCity(city)
 
-    $scope.heatData = [
-      new google.maps.LatLng(19.4326077, -99.13320799999997),
-      new google.maps.LatLng(25.6866142, -100.3161126),
-      new google.maps.LatLng(20.6596988, -103.34960920000003)
-    ]
-
-    $scope.getHeatData = ->
-      $scope.heatData
+    $scope.heatData = []
 
     $scope.$on 'mapInitialized'
     , (event, map) ->
       $scope.map = map
-      $scope.move()
-      #$scope.heatMap = map.heatmapLayers.heat
+      $scope.heatMap = map.heatmapLayers.heat
+
+      $timeout ->
+        $scope.move()
+      , 500
 
     $scope.move = ->
       $scope.map.setCenter Cities.getMyCity().latLng
       $scope.map.setZoom Cities.getMyCity().zoom
 
-    $scope.setAffordability = (id) ->
-      switch id
-        when "value"
-          data = Calculation.value()
-          another_id = "quality"
-        when "quality"
-          data = Calculation.quality()
-          another_id = "value"
+    updateHeat = (id, names) ->
+      console.log id
+      #another_id = names.filter(word) -> word isnt id
 
-      console.log data
-      $scope.heatData = data
+      Calculation.query(id).then (data) ->
+        $scope.heatData = []
+        $scope.heatData.push new google.maps.LatLng(area.latitude, area.longitude) for area in data
+        $scope.heatMap.setData $scope.heatData
+
+      return true
+
+    $scope.setAffordability = (id) ->
+      updateHeat id, ["value", "quality"]
       return true
 
     $scope.setAge = (id) ->
-      switch id
-        when "young"
-          data = Calculation.young()
-          another_id = "matured"
-        when "matured"
-          data = Calculation.matured()
-          another_id = "young"
-
-      console.log data
+      updateHeat id, ["young", "matured"]
       return true
 
     $scope.path = $location.path()
+
+    $scope.zoomChanged = ->
+      if $scope.map? && $scope.heatMap?
+        zoom = $scope.map.getZoom()
+        radius = null
+        if zoom < 11
+          radius = 10
+        else if zoom >= 11 && zoom < 15
+          radius = 10 + (zoom-10) * 6
+        else if zoom >= 15 && zoom < 20
+          radius = 40 + (zoom-15) * 12
+        else
+          radius = 120
+
+        $scope.heatMap.set 'radius', radius
 ]

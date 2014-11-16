@@ -1,15 +1,13 @@
 ng-include src="'partials/header.html'"
 
 / contents
-.container-fluid.main
+.container-fluid.main.text-center
   .row
-    .col-lg-8.map-area
-      map.custom-map id="mx-map"
-       //heatmap-layer id="heat" data="heatData"
-       //map-data load-geo-json="getHeatData()"
-        //marker position="19.4326077, -99.13320799999997" title="test"
+    .col-lg-6.map-area
+      map.custom-map id="mx-map" on-zoom_changed="zoomChanged()"
+        heatmap-layer id="heat" data="heatData"
 
-    .col-lg-4.text-center
+    .col-lg-6.text-center
       h2
         | What is your preference?
       table.table.table-condensed.preference-table
