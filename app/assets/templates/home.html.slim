@@ -7,8 +7,8 @@ section.summary-section
       | Smart relocation navigator for expats
     form.form-inline.text-center.start-form role="form"
         .form-group
-          select.form-control.city-select ng-model="myCity" ng-options="city.name for city in cities" ng-change="pickMyCity()"
-          button.btn.btn-success type="button" ng-href="#/app" ng-click="start()" Get Started
+          select.form-control.city-select ng-model="myCity" ng-options="city.name for city in cities" ng-change="pickMyCity(myCity)"
+          button.btn.btn-success type="button" ng-click="start()" Get Started
   .overlay
     #slides
       ul.slides-container
@@ -151,7 +151,7 @@ section.final-section
       | Going global, knowing local
     form.form-inline.text-center.start-form role="form"
       .form-group
-        select.form-control.city-select ng-model="myCity" ng-options="city.name for city in cities" ng-change="pickMyCity()"
+        select.form-control.city-select ng-model="myCity" ng-options="city.name for city in cities" ng-change="pickMyCity(myCity)"
         button.btn.btn-success type="button" ng-click="start()" Get Started
 
 ng-include src="'partials/footer.html'"

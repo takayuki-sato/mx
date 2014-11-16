@@ -11,12 +11,11 @@
 
     angular.element('#slides').superslides($scope.superslidesOptions);
 
-    $scope.pickMyCity = ->
-      Cities.setMyCity($scope.myCity)
+    $scope.pickMyCity = (city) ->
+      Cities.setMyCity(city)
 
     $scope.start = ->
       $location.path('/app')
-      $rootScope.$apply()
 
     $scope.goToProblem = ->
       $location.hash('section2')
