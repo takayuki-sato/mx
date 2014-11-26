@@ -4,7 +4,8 @@
   'ui.bootstrap',
   'ngResource',
   'templates',
-  'ngMap'
+  'ngMap',
+  'angular-growl'
 ])
 
 @mx.config(['$routeProvider', ($routeProvider) ->

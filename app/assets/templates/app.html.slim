@@ -4,7 +4,7 @@ ng-include src="'partials/header.html'"
 .container-fluid.main.text-center
   .row
     .col-lg-6.map-area
-      map.custom-map id="mx-map" on-zoom_changed="zoomChanged()"
+      map.custom-map id="mx-map" on-zoom_changed="zoomChanged()" center="[19.4326077, -99.13320799999997]"
         heatmap-layer id="heat" data="heatData"
 
     .col-lg-6.text-center
@@ -16,30 +16,42 @@ ng-include src="'partials/header.html'"
           td
             .form-group
               div.btn-group
-                button.btn.btn-default type="button" id="value" ng-click="setAffordability('value')"
+                button.btn.btn-default.button-container type="button" id="value" ng-click="setAffordability('value', 'Value For Money')"
                   i.fa.fa-usd
                   br
                   span.preference-button
                     | Value For Money
-                button.btn.btn-default type="button" id="quality" ng-click="setAffordability('quality')"
+                button.btn.btn-default.button-container type="button" id="quality" ng-click="setAffordability('quality', 'Good Quality')"
                   i.fa.fa-thumbs-o-up
                   br
                   span.preference-button
                     | Good Quality
         tr
-          th Age
+          th Lifestyle
           td
             .form-group
               div.btn-group
-                button.btn.btn-default type="button" id="young" ng-click="setAge('young')"
+                button.btn.btn-default.button-container type="button" id="young" ng-click="setAge('young', 'Young & Active')"
                   i.fa.fa-smile-o
                   br
                   span.preference-button
                     | Young & Active
-                button.btn.btn-default type="button" id="matured" ng-click="setAge('matured')"
+                button.btn.btn-default.button-container type="button" id="matured" ng-click="setAge('matured', 'Matured & Family')"
                   i.fa.fa-heart
                   br
                   span.preference-button
                     | Matured & Family
+
+      div ng-show="markers"
+        h2 You might want to know...
+        table.table.table-condensed.preference-table
+          tr
+            th Recommended area
+            td
+              | {{ myTown.formatted_address }}
+          tr
+            th Ranking
+            td
+              | # {{ranking.rank}} in {{ranking.label}}
 
 ng-include src="'partials/footer.html'"
