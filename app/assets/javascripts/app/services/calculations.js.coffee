@@ -1,7 +1,7 @@
 @mx.service 'Calculation', ['$http', ($http) ->
-  @query = (name) ->
+  @query = (name, city) ->
     $http
-    .get('/calculations/' + name + '.json')
+    .get('/calculations/' + name + '.json/?city=' + city)
     .then (response) ->
       response.data
 

@@ -121,7 +121,7 @@ namespace :db do
   desc 'basic analysis'
   task :basic => :environment do
     areas = Area.where(available: true)
-    areas.where(city: 'Monterrey') unless Rails.env.production?
+    areas.where(city: 'Monterrey') if !Rails.env.production? || ENV['FORCE']
 
     areas.each do |area|
       calculation = area.calculation || area.create_calculation
@@ -142,7 +142,7 @@ namespace :db do
   desc 'geocode'
   task :geocode => :environment do
     areas = Area.where(available: true)
-    areas.where(city: 'Monterrey') unless Rails.env.production?
+    areas.where(city: 'Monterrey') if !Rails.env.production? || ENV['FORCE']
 
     areas.each do |area|
       puts "- working at #{area.town}, #{area.city}"

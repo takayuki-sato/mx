@@ -21,6 +21,7 @@
 //= require angular-rails-templates
 //= require angular-ui-bootstrap
 //= require angular-ui-bootstrap-tpls
+//= require angular-growl
 //= require underscore
 //= require lodash
 //= require bluebird

@@ -20,4 +20,6 @@ class Area < ActiveRecord::Base
     [town, city, zipcode].compact.join(', ') + ', Mexico'
   end
   #after_validation :geocode
+
+  scope :located, ->(name) { where(city: name) }
 end
