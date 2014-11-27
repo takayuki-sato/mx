@@ -1,5 +1,5 @@
-@mx.controller 'AppCtrl', ['$scope', '$location', '$timeout', 'Calculation', 'Cities', 'growl',
-  ($scope, $location, $timeout, Calculation, Cities, growl) ->
+@mx.controller 'AppCtrl', ['$scope', '$location', '$timeout', 'Calculation', 'Cities', 'growl', 'Housings'
+  ($scope, $location, $timeout, Calculation, Cities, growl, Housings) ->
     $scope.myCity = Cities.getMyCity()
     $scope.cities = Cities.getCities()
     $scope.myTown = ''
@@ -57,13 +57,13 @@
             marker.set "class", "mx-marker"
 
             content = "<div class='info'>"+
-              "<h4>#{area.formatted_address}</h4>" +
+              "<h4>#{area.formatted_address.split(",",1)}</h4>" +
               "<img src='http://maps.googleapis.com/maps/api/streetview?size=200x200&location=#{area.latitude},%20#{area.longitude}&sensor=false&key=AIzaSyAryvACHmDs-nJMzl581vctZypgpHsukio' />"
 
             setInfoWindow marker, content, area, i, label
             $scope.markers.push marker
 
-            prepareResource marker, content, area, i, label if i == 1
+            prepareResource area, i, label if i == 1
             i++
         else
           growl.error 'No recommendations found'
@@ -101,12 +101,16 @@
 
     setInfoWindow = (marker, content, area, i, label) ->
       google.maps.event.addListener marker, 'click', ->
-        prepareResource marker, content, area, i, label
+        prepareInfoWindow marker, content
+        prepareResource area, i, label
+        #Housings.query area.formatted_address
         $scope.$apply()
 
-    prepareResource = (marker, content, area, i, label) ->
+    prepareInfoWindow = (marker, content) ->
       infowindow = new google.maps.InfoWindow {content: content}
       infowindow.open $scope.map, marker
+
+    prepareResource = (area, i, label) ->
       $scope.myTown = area
       $scope.ranking = {rank: i, label: label}
 
