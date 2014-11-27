@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141106171027) do
+ActiveRecord::Schema.define(version: 20141127070335) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,6 +61,7 @@ ActiveRecord::Schema.define(version: 20141106171027) do
     t.float    "northeast_lng"
     t.float    "southwest_lat"
     t.float    "southwest_lng"
+    t.integer  "auto",              default: 0
   end
 
   add_index "calculations", ["area_id"], name: "index_calculations_on_area_id", unique: true, using: :btree

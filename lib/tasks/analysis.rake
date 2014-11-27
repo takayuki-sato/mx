@@ -1,3 +1,19 @@
+def auto (area, calculation)
+  res = Transaction.category_distribution_by_zipcode area.zipcode
+  return if (res.blank? || res['result'].blank? || res['result']['code'] != 200)
+
+  res['data']['stats'].each do |month_res|
+    month_res['histogram'].each do |category_res|
+      label = category_res['label']
+      amount = category_res['num_payments'] * month_res['avg']
+
+      calculation.auto += amount if label == 'mx_auto'
+    end
+  end
+
+  calculation
+end
+
 def engel (area, calculation)
   res = Transaction.category_distribution_by_zipcode area.zipcode
   return if (res.blank? || res['result'].blank? || res['result']['code'] != 200)
@@ -146,11 +162,32 @@ namespace :db do
 
     areas.each do |area|
       puts "- working at #{area.town}, #{area.city}"
+      calculation = area.calculation || area.create_calculation
 
       area.geocode
       area.available = false if area.calculation && area.calculation.formatted_address.blank?
       area.calculation.save if area.calculation
       area.save
+    end
+
+    if !Rails.env.production?
+      Calculation.all.each do |data|
+        puts data.inspect
+      end
+    end
+  end
+
+  desc 'auto'
+  task :auto => :environment do
+    areas = Area.where(available: true)
+    areas.where(city: 'Monterrey').first if !Rails.env.production? || ENV['FORCE']
+
+    areas.each do |area|
+      puts "- working at #{area.town}, #{area.city}"
+
+      calculation = area.calculation || area.create_calculation
+      calculation = auto area, calculation
+      calculation.save
     end
 
     if !Rails.env.production?

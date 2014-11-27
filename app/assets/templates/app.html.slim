@@ -53,5 +53,16 @@ ng-include src="'partials/header.html'"
             th Ranking
             td
               | # {{ranking.rank}} in {{ranking.label}}
+          tr
+            th Primary transportation
+            td
+              div ng-if="myTown.auto > 100000"
+                span.fa.fa-car
+                span
+                  | Car
+              div ng-if="myTown.auto < 100000"
+                span.fa.fa-group
+                span
+                  | Public
 
 ng-include src="'partials/footer.html'"
