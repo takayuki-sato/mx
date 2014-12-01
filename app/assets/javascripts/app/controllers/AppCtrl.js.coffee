@@ -4,6 +4,7 @@
     $scope.cities = Cities.getCities()
     $scope.myTown = ''
     $scope.ranking = {}
+    $scope.myPreference = ''
 
     $scope.pickMyCity = (city) ->
       Cities.setMyCity(city)
@@ -32,11 +33,11 @@
 
     updateHeat = (id, names, label) ->
       #another_id = names.filter(word) -> word isnt id
-
+      $scope.myPreference = id
 
       Calculation.query(id, Cities.getMyCity().name).then (data) ->
         #console.log data
-        growl.info "Pick an area in the map"
+        growl.info "Pick a marker in the map"
         $scope.myTown = ''
 
         if data? && data.length > 0
@@ -66,6 +67,8 @@
             prepareResource area, i, label if i == 1
             i++
         else
+          clearMarkers()
+          $scope.markers = []
           growl.error 'No recommendations found'
 
       return true
@@ -114,4 +117,15 @@
       $scope.myTown = area
       $scope.ranking = {rank: i, label: label}
 
+    $scope.primaryCar = ->
+      ($scope.myTown.auto > 100000)
+
+    $scope.proposeInsurance = (id) ->
+      switch id
+        when 'car'
+          ($scope.primaryCar())
+        when 'family'
+          ($scope.myPreference == 'matured')
+        else
+          (!$scope.primaryCar() && $scope.myPreference != 'matured')
 ]

@@ -56,13 +56,35 @@ ng-include src="'partials/header.html'"
           tr
             th Primary transportation
             td
-              div ng-if="myTown.auto > 100000"
+              div ng-if="primaryCar()"
                 span.fa.fa-car
                 span
                   | Car
-              div ng-if="myTown.auto < 100000"
+              div ng-if="!primaryCar()"
                 span.fa.fa-group
                 span
                   | Public
+          tr
+            th
+              | Recommended insurance
+            td
+              div ng-if="proposeInsurance('car')"
+                a href="https://www.segurosbancomer.com.mx/seguros/tleu/segurosban/index.jsp" target="_blank"
+                  span.label.label-success
+                    span.fa.fa-car
+                    | Cars
+              div ng-if="proposeInsurance('family')"
+                a href="https://www.segurosbancomer.com.mx/seguros/tleu/segurosban/vida-y-familia/index.jsp" target="_blank"
+                  span.label.label-success
+                    span.fa.fa-heart
+                    | Life and Family
+              div ng-if="proposeInsurance()"
+                a href="https://www.segurosbancomer.com.mx/seguros/tleu/segurosban/vida-y-familia/index.jsp" target="_blank"
+                  span.label.label-success
+                    span.fa.fa-smile-o
+                    | Accident and Health
+              div
+                span.small
+                  | Jump to BBVA Bancomer Seguros (in Spanish)
 
 ng-include src="'partials/footer.html'"
